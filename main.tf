@@ -100,11 +100,12 @@ data "aws_ami" "ubuntu" {
 */
 
 resource "aws_instance" "jenkins_server" {
-  ami           = "ami-076754bea03bde973"
+  ami           = "ami-04daab3fe532b4df4"
   instance_type = "t2.micro"
   #vailability_zone = "ap-south-1a"
   key_name                    = "aws_ec2_key"
   associate_public_ip_address = true
+  iam_instance_profile        = "ec2_admin_role"
   subnet_id                   = aws_subnet.public_subnet.id
   security_groups             = ["${aws_security_group.jenkins_sg.id}"]
   tags = {
